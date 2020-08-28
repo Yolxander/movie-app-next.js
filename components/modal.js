@@ -1,10 +1,10 @@
-const Modal = () => {
+const Modal = (props) => {
+	let closeButton = null;
 
-    let closeButton = null
-    const submitModal = ()=>{
-        alert('Done')
-        closeButton.click()
-    }
+	const submitModal = () => {
+		alert('Submitting Modal');
+		closeButton.click();
+	};
 
 	return (
 		<div>
@@ -20,15 +20,16 @@ const Modal = () => {
 			<div
 				className="modal fade"
 				id="exampleModal"
-				tabindex="-1"
+				tabIndex="-1"
+				role="dialog"
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true"
 			>
-				<div className="modal-dialog">
+				<div className="modal-dialog" role="document">
 					<div className="modal-content">
 						<div className="modal-header">
 							<h5 className="modal-title" id="exampleModalLabel">
-								Create movie
+								Create Movie
 							</h5>
 							<button
 								type="button"
@@ -39,17 +40,21 @@ const Modal = () => {
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div className="modal-body">...</div>
+						<div className="modal-body">{props.children}</div>
 						<div className="modal-footer">
 							<button
-                                ref={(ele)=>closeButton = ele}
+								ref={(ele) => (closeButton = ele)}
 								type="button"
 								className="btn btn-secondary"
 								data-dismiss="modal"
 							>
 								Close
 							</button>
-							<button onClick={submitModal} type="button" className="btn btn-primary">
+							<button
+								onClick={submitModal}
+								type="button"
+								className="btn btn-primary"
+							>
 								Save changes
 							</button>
 						</div>
