@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideMenu from '../components/sideMenu';
 import Carousel from '../components/carousel';
 import MovieList from '../components/movieList';
@@ -8,10 +8,12 @@ import { getMovies } from '../actions';
 const Home = () => {
 	const [movies, setMovies] = useState([]);
 
-	// improve this because now it's called everytime!
-	getMovies().then((movies) => {
-		setMovies(movies);
-	});
+	
+  useEffect(() => {
+    getMovies().then((movies) => {
+      setMovies(movies);
+    });
+  }, [])
 
 	return (
 		<div>
