@@ -1,18 +1,31 @@
-import { useState } from 'react'
-
+import Modal from "./modal";
 
 
 const SideMenu = (props) => {
-  return (
-    <div>
-      <h1 className="my-4">{props.appName}</h1>
-      <div className="list-group">
-        <a href="#" className="list-group-item">Category 1</a>
-        <a href="#" className="list-group-item">Category 2</a>
-        <a href="#" className="list-group-item">Category 3</a>
-      </div>
-    </div>
-  )
-}
+	const { categories } = props;
+	return (
+		<div>
+            <Modal />
+			<h1 className="my-4 title">{props.title}</h1>
+			<div className="list-group">
+				{categories.map((c,index) => (
+                    <a 
+                    key={index}
+                    href="#" 
+                    className="list-group-item">
+						{c.name}
+					</a>
+				))}
+			</div>
+            <style jsx>
+				{`
+					.title {
+						font-size: 30px
+					}
+				`}
+			</style>
+		</div>
+	);
+};
 
-export default SideMenu
+export default SideMenu;

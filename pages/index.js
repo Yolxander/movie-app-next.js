@@ -3,30 +3,25 @@ import SideMenu from '../components/sideMenu';
 import Carousel from '../components/carousel';
 import MovieList from '../components/movieList';
 
-import { getMovies } from '../actions';
+import { getMovies, getCategories } from '../actions';
 
-const Home = () => {
-	const [movies, setMovies] = useState([]);
-
-	
-  useEffect(() => {
-    getMovies().then((movies) => {
-      setMovies(movies);
-    });
-  }, [])
-
+const Home = (props) => {
+	const { images,categories } = props;
 	return (
 		<div>
 			<div className="home-page">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-3">
-							<SideMenu appName={'Movie DB'} />
+              <SideMenu 
+              title={'Categories:'} 
+              categories={categories}
+              />
 						</div>
 						<div className="col-lg-9">
-							<Carousel />
+							<Carousel images={images} />
 							<div className="row">
-								<MovieList movies={movies} />
+								<MovieList movies={props.movies} />
 							</div>
 						</div>
 					</div>
@@ -35,12 +30,27 @@ const Home = () => {
 			<style jsx>
 				{`
 					.home-page {
-						padding-top: 80px;
+						padding-top: 60px;
 					}
 				`}
 			</style>
 		</div>
 	);
 };
+
+Home.getInitialProps = async () => {
+  const movies = await getMovies()
+  const categories = await getCategories()
+  const images = movies.map(movie => ({
+      id: `image-${movie.id}`,
+      url: movie.cover,
+      name: movie.name }))
+
+  return {
+    movies,
+    images,
+    categories
+  }
+}
 
 export default Home;
