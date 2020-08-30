@@ -39,7 +39,7 @@ const Home = (props) => {
 };
 
 Home.getInitialProps = async () => {
-  const movies = await getMovies()
+  const movies = await getMovies()//grabing the movies fetched in actions-index
   const categories = await getCategories()
   const images = movies.map(movie => ({
       id: `image-${movie.id}`,
