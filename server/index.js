@@ -12,7 +12,8 @@ const path = require('path');
 const moviesData = require(filePath);
 
 app.prepare().then(() => {
-	const server = express();
+  const server = express();
+  server.use(bodyParser.urlencoded({ extended: true }))
 	server.use(bodyParser.json());
 
 	server.get('/api/v1/movies', (req, res) => {

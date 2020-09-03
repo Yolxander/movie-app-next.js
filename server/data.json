@@ -1,18 +1,1 @@
-[
-  {
-    "Title": "Batman & Robin",
-    "Year": "1997",
-    "imdbID": "tt0118688",
-    "Type": "movie",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BMGQ5YTM1NmMtYmIxYy00N2VmLWJhZTYtN2EwYTY3MWFhOTczXkEyXkFqcGdeQXVyNTA2NTI0MTY@._V1_SX300.jpg",
-    "id": "utw0g"
-  },
-  {
-    "Title": "Robin Hood: Prince of Thieves",
-    "Year": "1991",
-    "imdbID": "tt0102798",
-    "Type": "movie",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BODM3MjA3NDM3M15BMl5BanBnXkFtZTgwMDc1NjUwMjI@._V1_SX300.jpg",
-    "id": "24myo"
-  }
-]
+[]
