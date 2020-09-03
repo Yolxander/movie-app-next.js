@@ -1,0 +1,84 @@
+.wrapper {
+    max-width: 1140px;
+    width: 80%;
+    margin: 0 auto;
+    display:flex;
+    flex-direction:column;
+}
+
+/* beginig of search section */
+.resultsSection {
+    padding-top: 20px;
+    height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.movieCard{
+    border:2px solid lightblue;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.movieCard h2{
+    font-size: 20px;
+}
+
+.movieCard img{
+    width: 150px;
+}
+
+.banner{
+    z-index: 2;
+    margin-top:20px;
+    position: absolute;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+/* end of search section */
+
+
+/* start of banner section */
+.card-header{
+    background: red;
+    color: white;
+}
+/* end of banner section */
+
+
+/* start of movieList section */
+    .card{
+        display: flex;
+        border: 2px solid lightblue;
+    }
+/* end of movieList section */
+
+/* start of nominee section */
+.welcome-nominee{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:40px;
+}
+
+.welcome-nominee h2{
+    font-size: 50px
+}
+
+.welcome-nominee p{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.welcome-nominee button{
+    width: 200px;
+}

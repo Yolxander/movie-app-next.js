@@ -1,56 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import SideMenu from '../components/sideMenu';
-import Carousel from '../components/carousel';
-import MovieList from '../components/movieList';
+import axios from 'axios';
+import SearchResults from './searchResults';
+import { createMovie, getMovies } from '../actions';
 
-import { getMovies, getCategories } from '../actions';
+const API_KEY = 'ce762116';
 
-const Home = (props) => {
-	const { images,categories } = props;
+const Search = (props) => {
+	const [q, setQuery] = useState('');
+	const [data, setData] = useState(null);
+
+	const { movies } = props;
+
+	
+
+	const handleCreateMovie = (movie) => {
+		createMovie(movie);
+	};
+
+	useEffect(() => {
+		axios
+			.get(`http://www.omdbapi.com/?s=${q}&apikey=${API_KEY}`)
+			.then((resp) => {
+				setData(resp.data.Search);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}, [q]);
+
 	return (
-		<div>
-			<div className="home-page">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-3">
-              <SideMenu 
-              title={'Categories:'} 
-              categories={categories}
-              />
-						</div>
-						<div className="col-lg-9">
-							<Carousel images={images} />
-							<div className="row">
-								<MovieList movies={props.movies} />
-							</div>
-						</div>
-					</div>
+		<div className="wrapper">
+			<div className="searchBar">
+				<div className="ui fluid icon input">
+					<input
+						className="searchBar"
+						placeholder="search by name"
+						value={q}
+						id="name-input"
+						type="text"
+						onChange={(e) => setQuery(e.target.value)}
+					/>
+					<i className="search icon"></i>
 				</div>
 			</div>
-			<style jsx>
-				{`
-					.home-page {
-						padding-top: 60px;
-					}
-				`}
-			</style>
+			<SearchResults
+				results={data}
+				query={q}
+				handleFormSubmit={handleCreateMovie}
+				movies={movies}
+			/>
 		</div>
 	);
 };
 
-Home.getInitialProps = async () => {
-  const movies = await getMovies()//grabing the movies fetched in actions-index
-  const categories = await getCategories()
-  const images = movies.map(movie => ({
-      id: `image-${movie.id}`,
-      url: movie.cover,
-      name: movie.name }))
+Search.getInitialProps = async () => {
+	const movies = await getMovies();
+	return {
+		movies,
+	};
+};
 
-  return {
-    movies,
-    images,
-    categories
-  }
-}
-
-export default Home;
+export default Search;

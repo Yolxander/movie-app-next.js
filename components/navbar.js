@@ -4,9 +4,11 @@ const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 			<div className="container">
-				<a className="navbar-brand" href="#">
+			<Link href="/nominee">
+				<a className="navbar-brand" >
 					Movie Next
 				</a>
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -23,24 +25,14 @@ const Navbar = () => {
 						<li className="nav-item active">
 							<Link href="/">
 								<a className="nav-link">
-									Home
+									Search
 									<span className="sr-only">(current)</span>
 								</a>
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link href="/about">
-								<a className="nav-link">About</a>
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link href="/services">
-								<a className="nav-link">Services</a>
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link href="/contact">
-								<a className="nav-link">Contact</a>
+							<Link href="/nominee">
+								<a className="nav-link">Nominee</a>
 							</Link>
 						</li>
 					</ul>

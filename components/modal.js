@@ -1,96 +1,56 @@
+import { useRouter } from 'next/router';
 
-import React from 'react'
+const Modal = ({handleIndex,index}) => {
+  const router = useRouter();
+	const { Modal } = router.query;
+  
+  let closeButton = null
 
-
-class Modal extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.closeButton = null
+  const submitModal = () => {
+    closeButton.click()
+      router.push('/')
   }
 
-  closeModal() {
-    this.closeButton.click()
+  const nominateMovie = (index)=>{
+    handleIndex(index)
   }
 
-  submitModal = () => {
-    alert('Submitting Modal')
-    this.closeModal()
+  const handleClose =()=>{
+    router.push('/nominee')
   }
 
-  render() {
-    return (
-      <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          Create Movie
-        </button>
 
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Create Movie</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                {this.props.children}
-              </div>
-              <div className="modal-footer">
-                <button ref={ele => this.closeButton = ele} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                { this.props.hasSubmit &&
-                  <button onClick={this.submitModal} type="button" className="btn btn-primary">Save changes</button>
-                }
-              </div>
+  return (
+    <div>
+      <button 
+      onClick={()=>nominateMovie(index)}
+      type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Nominate
+      </button>
+
+      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Movie Nominated</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Your movie have been added to Nominee
+            </div>
+            <div className="modal-footer">
+              <button 
+              onClick={handleClose}
+              ref={ele => closeButton = ele} type="button" className="btn btn-secondary" data-dismiss="modal">See Nominee</button>
+              <button onClick={submitModal} type="button" className="btn btn-primary">Stay in Search</button>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-
-
-// const Modal = (props) => {
-
-//   let closeButton = null
-
-//   const submitModal = () => {
-//     alert('Submitting Modal')
-//     closeButton.click()
-//   }
-
-//   return (
-//     <div>
-//       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-//         Create Movie
-//       </button>
-
-//       <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-//         <div className="modal-dialog" role="document">
-//           <div className="modal-content">
-//             <div className="modal-header">
-//               <h5 className="modal-title" id="exampleModalLabel">Create Movie</h5>
-//               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-//                 <span aria-hidden="true">&times;</span>
-//               </button>
-//             </div>
-//             <div className="modal-body">
-//               {props.children}
-//             </div>
-//             <div className="modal-footer">
-//               <button ref={ele => closeButton = ele} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-//               { props.hasSubmit &&
-//                 <button onClick={submitModal} type="button" className="btn btn-primary">Save changes</button>
-//               }
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
 
 export default Modal
